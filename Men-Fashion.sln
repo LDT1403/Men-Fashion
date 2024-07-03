@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Men-Fashion", "Men-Fashion\Men-Fashion.csproj", "{FD601F1D-0267-4672-A485-4F8A581C6EE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Men-Fashion.Repo", "Men-Fashion.Repo\Men-Fashion.Repo.csproj", "{C0190E2D-8631-4014-A690-DA3E299676F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FD601F1D-0267-4672-A485-4F8A581C6EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD601F1D-0267-4672-A485-4F8A581C6EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD601F1D-0267-4672-A485-4F8A581C6EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0190E2D-8631-4014-A690-DA3E299676F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0190E2D-8631-4014-A690-DA3E299676F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0190E2D-8631-4014-A690-DA3E299676F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0190E2D-8631-4014-A690-DA3E299676F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
