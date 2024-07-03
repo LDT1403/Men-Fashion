@@ -19,5 +19,7 @@ namespace Men_Fashion.Repo.GenericRepository
         void Delete(int id);
         void Add(T entity);
         void Update(T entity);
+
+        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
     }
 }

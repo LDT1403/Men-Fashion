@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Men_Fashion.Repo.Models;
+namespace Men_Fashion.Repo.Model;
 
 public partial class Product
 {
@@ -18,6 +18,8 @@ public partial class Product
     public int? Inventory { get; set; }
 
     public int? CategoryId { get; set; }
+
+    public string? IsDeleted { get; set; }
 
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
 

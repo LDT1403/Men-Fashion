@@ -1,5 +1,5 @@
 ﻿using Men_Fashion.Repo.GenericRepository;
-using Men_Fashion.Repo.Models;
+using Men_Fashion.Repo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,7 +97,8 @@ namespace Men_Fashion.Repo.UnitOfWork
             }
             set => throw new NotImplementedException();
         }
-        public IGenericRepository<Payment> payment {
+        public IGenericRepository<Payment> payment
+        {
             get
             {
                 if (paymentRepository == null)

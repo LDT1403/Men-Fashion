@@ -1,4 +1,4 @@
-﻿using Men_Fashion.Repo.Models;
+﻿using Men_Fashion.Repo.Model;
 using Men_Fashion.Repo.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 

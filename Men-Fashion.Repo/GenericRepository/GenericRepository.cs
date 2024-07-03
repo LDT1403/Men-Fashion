@@ -1,4 +1,5 @@
-﻿using Men_Fashion.Repo.Models;
+﻿
+using Men_Fashion.Repo.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,10 @@ namespace Men_Fashion.Repo.GenericRepository
                 _context.SaveChanges();
             }
         }
-
+        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate).ToList();
+        }
 
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", int? pageIndex = null, int? pageSize = null)

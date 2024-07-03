@@ -1,5 +1,5 @@
 ﻿using Men_Fashion.Repo.GenericRepository;
-using Men_Fashion.Repo.Models;
+using Men_Fashion.Repo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

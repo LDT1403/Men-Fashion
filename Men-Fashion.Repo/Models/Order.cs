@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Men_Fashion.Repo.Models;
+namespace Men_Fashion.Repo.Model;
 
 public partial class Order
 {
