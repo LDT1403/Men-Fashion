@@ -61,7 +61,10 @@ namespace Men_Fashion.Controllers
 
             _unitOfWork.save();
 
-            return Ok("Sản phẩm đã được thêm vào giỏ hàng");
+            return Ok(new BaseResponse
+            {
+                Message = "Add Success"
+            }) ;
         }
 
         [HttpGet("getCart/{userId}")]
