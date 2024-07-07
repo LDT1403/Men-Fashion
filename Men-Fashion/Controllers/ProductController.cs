@@ -28,6 +28,21 @@ namespace Men_Fashion.Controllers
             var productResponses = _mapper.Map<IEnumerable<ProductResponse>>(products);
             return Ok(productResponses);
         }
+        [HttpGet("GetProductTrend")]
+        public IActionResult GetProductTrend()
+        {
+            var product = _unitOfWork.product.GetAll().Take(2).OrderByDescending(x => x.Id);
+            var productResponses = _mapper.Map<IEnumerable<ProductResponse>>(product);
+            return Ok(productResponses);
+        }
+
+        [HttpGet("GetProductSeller")]
+        public IActionResult GetProductSeller()
+        {
+            var product = _unitOfWork.product.GetAll().Take(1).OrderByDescending(x => x.Inventory);
+            var productResponses = _mapper.Map<IEnumerable<ProductResponse>>(product);
+            return Ok(productResponses);
+        }
 
         [HttpPost("addProduct")]
         public IActionResult AddProduct([FromBody] ProductRequest productRequest)
@@ -105,6 +120,23 @@ namespace Men_Fashion.Controllers
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
+        }
+        [HttpPost("searchProduct")]
+        public IActionResult SearchProduct([FromBody] SearchProductRequest searchRequest)
+        {
+            if (string.IsNullOrEmpty(searchRequest.Keyword))
+            {
+                return BadRequest("Keyword cannot be empty.");
+            }
+
+            var products = _unitOfWork.product.GetAll()
+                .Where(p =>
+                    p.ProductName.Contains(searchRequest.Keyword) ||
+                    p.Description.Contains(searchRequest.Keyword)
+                );
+
+            var productResponses = _mapper.Map<IEnumerable<ProductResponse>>(products);
+            return Ok(productResponses);
         }
     }
 }

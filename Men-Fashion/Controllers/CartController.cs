@@ -3,6 +3,7 @@ using Men_Fashion.Repo.Model;
 using Men_Fashion.Repo.UnitOfWork;
 using Men_Fashion.Request;
 using Men_Fashion.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -21,10 +22,15 @@ namespace Men_Fashion.Controllers
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
+        [Authorize]
         [HttpPost("addCart")]
         public IActionResult AddCart(AddCartRequest cartRequest)
         {
+            var user = User.Claims.FirstOrDefault(x => x.Type == "UserId");
+            if(user == null)
+            {
+                return BadRequest("Invalid Token");
+            }
             if (cartRequest.Quantity < 1)
             {
                 return BadRequest("Số lượng phải lớn hơn 1");
@@ -35,8 +41,8 @@ namespace Men_Fashion.Controllers
             {
                 return NotFound("Sản phẩm không tồn tại");
             }
-
-            var cart = _unitOfWork.cart.Find(c => c.UserId == cartRequest.UserId && c.ProductId == cartRequest.ProductId).FirstOrDefault();
+            int userId = int.Parse(user.Value);
+            var cart = _unitOfWork.cart.Find(c => c.UserId == userId && c.ProductId == cartRequest.ProductId).FirstOrDefault();
             if (cart != null)
             {
                 cart.Quantity += cartRequest.Quantity;
@@ -46,7 +52,7 @@ namespace Men_Fashion.Controllers
             {
                 cart = new Cart
                 {
-                    UserId = cartRequest.UserId,
+                    UserId = userId,
                     ProductId = cartRequest.ProductId,
                     Quantity = cartRequest.Quantity,
                 };

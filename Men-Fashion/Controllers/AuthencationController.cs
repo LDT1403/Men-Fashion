@@ -35,7 +35,7 @@ namespace Men_Fashion.Controllers
             var claims = new List<Claim>
             {
 
-                new Claim("Email", user.Email),
+                new Claim("UserId", user.UserId.ToString()),
 
 
             };
@@ -60,21 +60,20 @@ namespace Men_Fashion.Controllers
 
                 if (_user == null)
                 {
-                    return Ok(new BaseResponse
-                    {
-                        Success = false,
-                        Message = "Invalid email or password"
-                    });
+                    //return Ok(new BaseResponse
+                    //{
+                    //    Success = false,
+                    //    Message = "Invalid email or password"
+                    //});
+                    return BadRequest("Invalid email or password");
                 }
                 var member = _mapper.Map<User>(_user);
 
                 var token = GenerateToken(member);
 
-                return Ok(new BaseResponse
+                return Ok(new AuthenResponse
                 {
-                    Success = true,
-                    Message = "Success",
-                    Data = token
+                    token = token,
                 });
             }
             catch (Exception ex)
