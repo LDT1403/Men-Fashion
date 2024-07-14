@@ -13,6 +13,7 @@ namespace Men_Fashion.Helper
             CreateMap<ProductRequest, Product>();
             CreateMap<ProductResponse, Product>().ReverseMap();
             CreateMap<CategoryRequest, Category>().ReverseMap();
+            CreateMap<RegisterRequest, User>();
             //CreateMap<Cart, CartResponse>()
             //    .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.ProductId))
             //    .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
