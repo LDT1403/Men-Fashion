@@ -46,6 +46,7 @@ namespace Men_Fashion.Controllers
             if (cart != null)
             {
                 cart.Quantity += cartRequest.Quantity;
+                cart.Price = product.Price * cartRequest.Quantity;
                 _unitOfWork.cart.Update(cart);
             }
             else
@@ -55,6 +56,7 @@ namespace Men_Fashion.Controllers
                     UserId = userId,
                     ProductId = cartRequest.ProductId,
                     Quantity = cartRequest.Quantity,
+                    Price = product.Price * cartRequest.Quantity
                 };
                 _unitOfWork.cart.Add(cart);
             }
@@ -81,7 +83,7 @@ namespace Men_Fashion.Controllers
             {
                 ProductId = ci.Cart.ProductId,
                 Quantity = ci.Cart.Quantity,
-                Price = ci.Product?.Price,
+                Price = ci.Cart.Price,
                 ProductName = ci.Product?.ProductName,
                 Thumbnail = ci.Product?.Thumbnail,
                 Inventory = ci.Product?.Inventory
