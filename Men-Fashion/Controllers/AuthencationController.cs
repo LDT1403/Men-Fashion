@@ -81,8 +81,15 @@ namespace Men_Fashion.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error: {ex.Message}");
             }
         }
+        [HttpPost("regiter")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest register)
+        {
+            var mapper = _mapper.Map<User>(register);
+            _unitOfWork.user.Add(mapper);
+            _unitOfWork.save();
+            return Ok(new { status = "success", message = "Registration successful" });
+        }
 
-      
 
 
     }
