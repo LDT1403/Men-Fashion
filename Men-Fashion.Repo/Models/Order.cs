@@ -17,7 +17,11 @@ public partial class Order
 
     public DateTime? OrderDate { get; set; }
 
-    public string? Status { get; set; }
+    public string? Name { get; set; }
+    public string? Phone { get; set; }
+    public string? AddressDetail { get; set; }
+    public string? Status { get; set; } 
+    public string? PaymentMethod { get; set; }
 
     public virtual Address? Address { get; set; }
 

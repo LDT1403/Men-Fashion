@@ -14,4 +14,8 @@
 
         public int? Inventory { get; set; }
     }
+    public class CountCart {
+        public int count { get; set; }
+    }
+
 }
