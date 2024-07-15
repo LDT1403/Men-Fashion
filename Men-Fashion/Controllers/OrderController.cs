@@ -30,10 +30,11 @@ namespace Men_Fashion.Controllers
                 return BadRequest("InValid");
             }
             int userID = int.Parse(user.Value);
+          
             decimal totalMoney = 0;
             var order = new Order
             {
-                UserId = 1,
+                UserId = userID,
                 Name = orderRequest.Name,
                 Phone = orderRequest.Phone,
                 AddressDetail = orderRequest.AddressDetail,
@@ -64,8 +65,17 @@ namespace Men_Fashion.Controllers
               
                 
                 _unitOfWork.orderdetail.Add(orderDetail);
+                var userIdFind = _unitOfWork.cart.GetAll(x =>x.UserId == userID && x.ProductId == productID).FirstOrDefault();
+                if(userIdFind != null)
+                {
+                    _unitOfWork.cart.Delete(userIdFind.Id);
+                }
+              
+
+                
             }
             order.TotalMoney = totalMoney;
+
 
             _unitOfWork.save();
 
