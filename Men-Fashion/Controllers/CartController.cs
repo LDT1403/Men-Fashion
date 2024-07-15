@@ -120,5 +120,27 @@ namespace Men_Fashion.Controllers
 
             return Ok("Product removed from cart successfully");
         }
+        [HttpDelete("deleteListCart/{userId}")]
+        public IActionResult DeleteListCart(int userId, [FromBody] List<int> productIds)
+        {
+          
+            var cartItems = _unitOfWork.cart.Find(c => c.UserId == userId && productIds.Contains((int)c.ProductId)).ToList();
+
+            if (cartItems.Count == 0)
+            {
+                return NotFound("Cart items not found");
+            }
+
+           
+            foreach (var cartItem in cartItems)
+            {
+                _unitOfWork.cart.Delete(cartItem.Id);
+            }
+
+            _unitOfWork.save();
+
+            return Ok("Products removed from cart successfully");
+        }
+
     }
 }
