@@ -31,7 +31,7 @@ namespace Men_Fashion.Controllers
         [HttpGet("GetProductTrend")]
         public IActionResult GetProductTrend()
         {
-            var product = _unitOfWork.product.GetAll().Take(2).OrderByDescending(x => x.Id);
+            var product = _unitOfWork.product.GetAll().Take(6).OrderByDescending(x => x.Id);
             var productResponses = _mapper.Map<IEnumerable<ProductResponse>>(product);
             return Ok(productResponses);
         }
@@ -39,7 +39,7 @@ namespace Men_Fashion.Controllers
         [HttpGet("GetProductSeller")]
         public IActionResult GetProductSeller()
         {
-            var product = _unitOfWork.product.GetAll().Take(1).OrderByDescending(x => x.Inventory);
+            var product = _unitOfWork.product.GetAll().Take(6).OrderByDescending(x => x.Inventory);
             var productResponses = _mapper.Map<IEnumerable<ProductResponse>>(product);
             return Ok(productResponses);
         }

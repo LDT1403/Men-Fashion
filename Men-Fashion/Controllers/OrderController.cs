@@ -2,6 +2,7 @@
 using Men_Fashion.Repo.Model;
 using Men_Fashion.Repo.UnitOfWork;
 using Men_Fashion.Request;
+using Men_Fashion.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,19 +21,19 @@ namespace Men_Fashion.Controllers
 
         }
         [HttpPost("add-Order")]
-        public async Task<bool> addOrder(OrderRequest orderRequest)
+        public async Task<IActionResult> addOrder(OrderRequest orderRequest)
         {
 
             var user = User.Claims.FirstOrDefault(x => x.Type == "UserId");
             if (user == null)
             {
-                return false;
+                return BadRequest("InValid");
             }
             int userID = int.Parse(user.Value);
             decimal totalMoney = 0;
             var order = new Order
             {
-                UserId = userID,
+                UserId = 1,
                 Name = orderRequest.Name,
                 Phone = orderRequest.Phone,
                 AddressDetail = orderRequest.AddressDetail,
@@ -68,7 +69,10 @@ namespace Men_Fashion.Controllers
 
             _unitOfWork.save();
 
-            return true;
+            return Ok(new BaseResponse
+            {
+                Message = "Create Success"
+            }) ;
         }
     }
 }
